@@ -1,0 +1,61 @@
+.home-page-container {
+  height: 100%;
+  width: 100%;
+  background-repeat: none;
+  background-position: center;
+  background-size: cover;
+}
+
+.main-container.dark .home-page-container {
+  background-color: var(--color-very-dark-blue);
+}
+
+.back-image {
+display: block;
+}
+
+.todo-container {
+  background-color: transparent;
+  position: absolute;
+  min-height: 40%;
+  min-width: 35%;
+  max-width: 50%;
+  margin: auto ;
+  top: 10%;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.title {
+  color: var(--color-very-light-grayish-blue);
+  text-transform: uppercase;
+  font-size: 4rem;
+  letter-spacing: 1rem;
+}
+
+.theme-icon {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+@media screen and (max-width: 350px) {
+  .todo-container{
+    margin-inline: 4rem;
+    min-width: 100%;
+    display: flex;
+
+  }
+  
+  .title{
+        font-size: 20px;
+  }
+
+}

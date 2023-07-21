@@ -1,0 +1,75 @@
+.list-container {
+  background-color: var(--color-very-light-grayish-blue);
+  width: 100%;
+  margin-top: 5%;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 1px 9px rgba(0, 0, 0, 0.3);
+}
+
+.main-container.dark .list-container {
+  background-color: var(--color-very-dark-desaturated-blue);
+}
+
+.list-footer {
+  width: 100%;
+  padding: 2rem;
+  padding-inline: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-1 {
+  color: var(--color-dark-grayish-blue);
+  font-size: 1.6rem;
+}
+
+.main-container.dark .footer-1 {
+  color: var(--color-dark-grayish-blue-dark-theme);
+}
+
+.footer-2 {
+  font-size: 1.6rem;
+  display: flex;
+}
+
+.footer-2 div {
+  color: var(--color-dark-grayish-blue);
+  margin-right: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.main-container.dark .footer-2 div {
+  color: var(--color-dark-grayish-blue-dark-theme);
+}
+.footer-2 div:hover {
+  color: var(--color-bright-blue);
+}
+
+.footer-3 {
+  color: var(--color-dark-grayish-blue);
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+.main-container.dark .footer-3 {
+  color: var(--color-dark-grayish-blue-dark-theme);
+}
+
+div.selected {
+  color: var(--color-bright-blue);
+}
+
+.main-container.dark div.selected {
+  color: var(--color-bright-blue);
+}
+@media screen and (max-width: 350px) {
+  .list-footer{
+    gap: .5rem;
+    
+  }.footer-1,.footer-2,.footer-3{
+      font-size: 12px;
+  }
+}
