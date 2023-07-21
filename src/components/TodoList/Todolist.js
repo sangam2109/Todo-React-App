@@ -1,68 +1,104 @@
-import React, { useEffect, useState, useContext } from 'react'
-import './TodoList.css'
-import TodoItem from '../TodoItem/TodoItem'
-import TodoContext from '../ContextAPI/Context'
+import React, { useEffect, useState, useContext } from 'react';
+import './TodoList.css';
+import TodoItem from '../TodoItem/TodoItem';
+import TodoContext from '../ContextAPI/Context';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
-// const local_item = () => {
-//     let list = localStorage.getItem('myTasks')
-//     if (list) {
-//         return 
-//     }
-//     else {
-//         return []
-//     }
-// }
 function Todolist() {
     const { todoItems, todoCount, clearCompleted } = useContext(TodoContext);
-    const [TodoList, setTodoList] = useState([])
-    const [filter, setFilter] = useState('all')
+    const [TodoList, setTodoList] = useState([]);
+    const [filter, setFilter] = useState('all');
 
     useEffect(() => {
-        setTodoList(JSON.parse(localStorage.getItem('myTasks')))
-        if (filter === 'all') {
+
+        applyFilter(filter);
+    }, [filter, todoItems , TodoList]);
+
+    const applyFilter = (selectedFilter) => {
+        if (selectedFilter === 'all') {
             setTodoList(todoItems);
-        } else if (filter === 'active') {
+        } else if (selectedFilter === 'active') {
             setTodoList(todoItems.filter((item) => item.isActive));
-        } else if (filter === 'completed') {
+        } else if (selectedFilter === 'completed') {
             setTodoList(todoItems.filter((item) => !item.isActive));
         }
-    }, [filter, todoItems ,TodoList, todoCount, clearCompleted]);
-  
-    return (
-        <div className='list-container'>
-            {
-               TodoList.map((item) => {
-                    return (<TodoItem key={item.id} todoItem={item} />)
-                
-               })
-            }
+    };
 
+    const handleDrop = (result) => {
+        if (!result.destination) return;
+
+        const reorderedList = Array.from(TodoList);
+        const [reorderedItem] = reorderedList.splice(result.source.index, 1);
+        reorderedList.splice(result.destination.index, 0, reorderedItem);
+        setTodoList(reorderedList);
+    };
+
+    return (
+        <div className='list-container-mine'>
+            <DragDropContext onDragEnd={handleDrop}>
+                <Droppable droppableId='list-container'>
+                    {(provided) => (
+                        <div
+                            className='list-container'
+                            {...provided.droppableProps}
+                            ref={provided.innerRef}
+                        >
+                            {TodoList.map((item, index) => (
+                                <Draggable key={item.id} draggableId={item.id} index={index}>
+                                    {(provided) => (
+                                        <div
+                                            className='item-container'
+                                            ref={provided.innerRef}
+                                            {...provided.dragHandleProps}
+                                            {...provided.draggableProps}
+                                        >
+                                            <TodoItem todoItem={item} />
+                                        </div>
+                                    )}
+                                </Draggable>
+                            ))}
+                            {provided.placeholder}
+                        </div>
+                    )}
+                </Droppable>
+            </DragDropContext>
             <div className='list-footer'>
                 <div className='footer-1'> {todoCount} items Left</div>
                 <div className='footer-2'>
                     <div
-                        id="all"
+                        id='all'
                         className={filter === 'all' ? 'selected' : ''}
-                        onClick={() => setFilter('all')}
+                        onClick={() => {
+                            setFilter('all');
+                            applyFilter('all');
+                        }}
                     >
                         All
                     </div>
                     <div
-                        id="active"
+                        id='active'
                         className={filter === 'active' ? 'selected' : ''}
-                        onClick={() => setFilter('active')}
+                        onClick={() => {
+                            setFilter('active');
+                            applyFilter('active');
+                        }}
                     >
                         Active
                     </div>
                     <div
-                        id="completed"
+                        id='completed'
                         className={filter === 'completed' ? 'selected' : ''}
-                        onClick={() => setFilter('completed')}
+                        onClick={() => {
+                            setFilter('completed');
+                            applyFilter('completed');
+                        }}
                     >
                         Completed
                     </div>
                 </div>
-                <div className='footer-3' onClick={clearCompleted}> Clear completed</div>
+                <div className='footer-3' onClick={clearCompleted}>
+                    Clear completed
+                </div>
             </div>
         </div>
     );

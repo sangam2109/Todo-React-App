@@ -13,6 +13,10 @@
   background-color: var(--color-very-dark-desaturated-blue);
 }
 
+form{
+  width: 100%;
+}
+
 .input-icon {
   height: 2rem;
   width: 2rem;
@@ -52,9 +56,4 @@
 .input.dark::placeholder {
   opacity: 1;
 }
-@media screen and (max-width: 350px) {
-  .input-container{
-    
-  }
 
-}
