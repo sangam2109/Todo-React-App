@@ -19,7 +19,6 @@ function Input() {
             {
                 id: `${id}`,
                 title: `${inputValue}`,
-                isActive: true,
                 show: true,
                 checked:false,
             }]))

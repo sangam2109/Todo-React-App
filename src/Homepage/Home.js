@@ -14,7 +14,7 @@ function Home() {
 
     useEffect(() => {
         updateTheme();
-        handleMediaQuery(); // Call it once when the component mounts to set the initial image sources.
+        handleMediaQuery(); 
         window.addEventListener('resize', handleMediaQuery);
         return () => {
             window.removeEventListener('resize', handleMediaQuery);

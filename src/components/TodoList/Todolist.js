@@ -10,14 +10,6 @@ function Todolist() {
     const [filter, setFilter] = useState('all');
 
     useEffect(() => {
-        // Load TodoList from local storage when the component mounts
-        const storedTodoList = localStorage.getItem('todoList');
-        if (storedTodoList) {
-            setTodoList(JSON.parse(storedTodoList));
-        }
-    }, []);
-    useEffect(() => {
-        localStorage.setItem('todoList', JSON.stringify(TodoList));
         applyFilter(filter);
     }, [filter, todoItems , TodoList]);
 
