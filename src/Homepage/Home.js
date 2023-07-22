@@ -39,7 +39,7 @@ function Home() {
     };
 
     const handleMediaQuery = () => {
-        const isMobile = window.matchMedia('(max-width: 350px)').matches;
+        const isMobile = window.matchMedia('(max-width: 450px)').matches;
         const lightImage = isMobile ? moblightImg : lightImg;
         const darkImage = isMobile ? mobdarkImg : darkImg;
         const lightBg = document.getElementById('light-bg');

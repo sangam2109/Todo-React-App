@@ -1,8 +1,8 @@
 .input-container {
-  margin-top: 10%;
+  margin-top: 5%;
   width: 100%;
   background-color: var(--color-very-light-grayish-blue);
-  padding: 2rem;
+  padding: 1.5rem;
   border-radius: 1rem;
   border: none;
   display: flex;
@@ -57,3 +57,21 @@ form{
   opacity: 1;
 }
 
+@media screen and (max-width: 768px) {
+  .input-container{
+    padding: 1rem;
+    margin-top: 5%;
+  }
+}
+@media screen and (max-width: 550px) {
+  .input-container{
+    padding: 1rem;
+    margin-top: 3%;
+  }
+}
+@media screen and (max-width: 400px) {
+  .input-container{
+
+    margin-top: 7%;
+  }
+}

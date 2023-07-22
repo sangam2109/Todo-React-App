@@ -65,11 +65,18 @@ div.selected {
 .main-container.dark div.selected {
   color: var(--color-bright-blue);
 }
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 400px) {
   .list-footer{
     gap: .5rem;
-    
   }.footer-1,.footer-2,.footer-3{
       font-size: 12px;
   }
+  .list-container-mine{
+    margin-top:7%;
+  }
+}
+@media screen and (max-width: 768px) {
+ .list-footer{
+  padding: 1rem;
+ }
 }

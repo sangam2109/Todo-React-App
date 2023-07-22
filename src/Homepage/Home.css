@@ -1,9 +1,6 @@
 .home-page-container {
   height: 100%;
   width: 100%;
-  background-repeat: none;
-  background-position: center;
-  background-size: cover;
 }
 
 .main-container.dark .home-page-container {
@@ -11,21 +8,19 @@
 }
 
 .back-image {
-display: block;
+  display: inline-block;
+  width: 100%;
 }
 
 .todo-container {
-  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   position: absolute;
-  min-height: 40%;
-  min-width: 35%;
-  max-width: 50%;
-  margin: auto ;
+  margin-inline: 20%;
   top: 10%;
   left: 0;
   right: 0;
-  display: flex;
-  flex-direction: column;
 }
 
 .todo-wrapper {
@@ -46,16 +41,32 @@ display: block;
 .hidden {
   display: none;
 }
-@media screen and (max-width: 350px) {
-  .todo-container{
-    margin-inline: 4rem;
-    min-width: 100%;
-    display: flex;
-
+@media screen and (max-width: 900px) {
+  .todo-container {
+    min-width: 40%; /* For example, increase the minimum width to 70% on smaller screens */
+    max-width: 60%; /* For example, increase the maximum width to 90% on smaller screens */
+    top: 5%;
+    margin-inline: 18%;
   }
-  
+}
+@media screen and (max-width: 620px) {
+  .todo-container {
+    max-width: 70%; /* For example, increase the maximum width to 90% on smaller screens */
+    top: 6%;
+    margin-inline: 15%;
+  }
   .title{
-        font-size: 20px;
+    font-size: 30px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .todo-container {
+    margin-inline: 5%;
+    min-width: 90%;
+    top: 10%;
   }
 
+  .title {
+    font-size: 20px;
+  }
 }
