@@ -1,45 +1,39 @@
 import './TodoItem.css'
-import React, { useContext,useEffect } from 'react'
+import React, { useContext, useState } from 'react'
 import { ReactComponent as Cross } from '../../images/icon-cross.svg'
 import { ReactComponent as Check } from '../../images/icon-check.svg'
 import TodoContext from '../ContextAPI/Context'
 
 function TodoItem({ todoItem }) {
-    
     const { removeTodoItem, handleTodoCount } = useContext(TodoContext);
+    const [checked, setChecked] = useState(todoItem.checked);
+   
 
-    const checkList = (todoItemSelected) => {
-        let todoCircle = document.querySelector(`#todo-icon-${todoItemSelected.id}`);
-        let check = document.querySelector(`#check-${todoItemSelected.id}`);
-        let todoItemTitle = document.querySelector(`#todo-item-${todoItemSelected.id}`);
-        todoCircle.classList.toggle("checked");
-        check.classList.toggle("hidden");
-        todoItemTitle.classList.toggle("checked");
+    const handleToggleCheck = () => {
+        setChecked(!checked); // Toggle the local state
+        todoItem.checked = !checked; // Update the todoItem.checked value directly
+        handleTodoCount(); // Call handleTodoCount to update todoCount
+    };
 
-        if (todoItemTitle.classList.contains('checked')) {
-            todoItemSelected.isActive = false;
-        }
-        else {
-            todoItemSelected.isActive = true;
-        }
-        handleTodoCount();
-    }
     const handleDelete = (todoItemToRemove) => {
         removeTodoItem(todoItemToRemove);
     };
+
     return (
         <div className="todo-item-container">
-            <div className="todo-items" onClick={() => checkList(todoItem)}>
-                <div className="todo-icon" id={`todo-icon-${todoItem.id}`}>
-                    <Check id={`check-${todoItem.id}`} className="hidden" />
+            <div className={`todo-items ${checked ? 'checked' : ''}`} onClick={handleToggleCheck}>
+                <div className={`todo-icon ${checked ? 'checked' : ''}`} id={`todo-icon-${todoItem.id}`}>
+                    <Check id={`check-${todoItem.id}`} className={`${checked ? '' : 'hidden'}`} />
                 </div>
-                <div className="todo-item" id={`todo-item-${todoItem.id}`}>
+                <div className={`todo-item ${checked ? 'checked' : ''}`} id={`todo-item-${todoItem.id}`}>
                     {todoItem.title}
                 </div>
             </div>
+            <div className='cross-area'>
             <Cross className="cross" onClick={() => handleDelete(todoItem)} />
+            </div>
         </div>
     );
-};
+}
 
 export default TodoItem;

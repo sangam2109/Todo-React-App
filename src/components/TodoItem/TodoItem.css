@@ -11,8 +11,12 @@
 
 .todo-items {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 80%;
+}
+
+.cross-area{
+  float:right;
+  margin-left:20%;
 }
 
 .main-container.dark .todo-item-container {

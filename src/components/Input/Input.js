@@ -1,8 +1,9 @@
 import './Input.css'
-import { useState , useContext } from 'react';
+import { useState, useContext } from 'react';
 import TodoContext from '../ContextAPI/Context';
 
 function Input() {
+    const id=Math.floor(Math.random()*100000000)
     const { addTodoItem } = useContext(TodoContext)
     const [inputValue, setInputValue] = useState('');
 
@@ -13,15 +14,25 @@ function Input() {
         event.preventDefault()
         if (inputValue !== "") {
             addTodoItem(inputValue)
+            const data = JSON.parse(localStorage.getItem("todoList"))
+            localStorage.setItem('todoList', JSON.stringify([...data,
+            {
+                id: `${id}`,
+                title: `${inputValue}`,
+                isActive: true,
+                show: true,
+                checked:false,
+            }]))
+
         }
         setInputValue("");
     }
-    
+
     return (
         <div className="input-container ">
             <div className="input-icon"></div>
             <form onSubmit={handleSubmit}>
-                
+
                 <input
                     type='text'
                     className="input"
@@ -29,7 +40,7 @@ function Input() {
                     value={inputValue}
                     onChange={handleChange}
                 />
-                
+
             </form>
         </div>
     );
