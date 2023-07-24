@@ -37,21 +37,28 @@
 html {
   font-size: 62.5%;
 }
-#root {
-  min-height: 100vh;
-  position: relative;
-}
+
 body {
-  height: 100% !important;
-  width: 100% !important;
+  height: 100% ;
+  width: 100% ;
 }
 
 .main-container {
-  height: 100% !important;
-  width: 100% !important;
+  height: 100% ;
+  width: 100% ;
 }
 
 .hidden {
   display: none;
 }
 
+@media screen and (max-width:1000px) {
+  html{
+    font-size:55%;
+  }
+}
+@media screen and (max-width:800px) {
+  html{
+    font-size:50%;
+  }
+}

@@ -1,4 +1,3 @@
-import './App.css';
 import Home from './Homepage/Home';
 
 function App() {
