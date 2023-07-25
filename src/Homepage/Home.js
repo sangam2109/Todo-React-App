@@ -8,6 +8,8 @@ import { ReactComponent as Moon } from '../images/icon-moon.svg';
 import { ReactComponent as Sun } from '../images/icon-sun.svg';
 import Input from '../components/Input/Input';
 import Todolist from '../components/TodoList/Todolist';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Home() {
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
@@ -62,8 +64,9 @@ function Home() {
                 src={darkImg}
                 alt="home page dark image"
             />
-
+            
             <div className="todo-container">
+                <ToastContainer style={{ width: "60rem" , fontSize:"2rem"}} />
                 <div className="todo-wrapper">
                     <h1 className="title">Todo</h1>
                     <div className="theme-icon">

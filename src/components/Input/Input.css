@@ -50,6 +50,7 @@ form{
 
 .input::placeholder {
   opacity: 0.5;
+  font-size: 2rem;
 }
 
 .input.dark::placeholder {

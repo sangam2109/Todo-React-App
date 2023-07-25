@@ -58,7 +58,12 @@
 .main-container.dark .todo-item {
   color: var(--color-light-grayish-blue-dark-theme);
 }
-
+.cross{
+  height: 2.5rem;
+  width:2.5rem;
+  padding: .25rem;
+  cursor: pointer;
+}
 .main-container.dark .todo-item.checked {
   opacity: 0.2;
 }
@@ -67,12 +72,23 @@
   flex-direction: row;
   gap: 2rem;
   align-items: center;
-  margin-left:10%;
+  justify-content: center;
+  margin-left:5%;
 }
 .edit-button{
   height: 2.5rem;
   opacity:0.6;
 }
+.edit-button:hover , .cross:hover{
+  background: #4CAF50;
+}
 .main-container.dark .edit-button {
   opacity: 0.9;
+}
+.main-container.dark .edit-button:hover,.main-container.dark .cross:hover {
+  background: linear-gradient(
+    to right bottom,
+    hsl(192, 100%, 67%),
+    hsl(280, 87%, 65%)
+  );
 }

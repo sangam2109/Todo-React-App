@@ -1,10 +1,23 @@
 import React, { useState, useEffect } from "react";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const TodoContext = React.createContext();
+const toaster = (data) => {
+
+    toast.success(data, {
+        position: 'top-center',
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+    });
+}
 
 export const TodoProvider = ({ children }) => {
     const [todoItems, settodoItems] = useState(JSON.parse(localStorage.getItem('todoList')) ?? []);
-    const [Edit,SetEdit]=useState('false')
+
     const [todoCount, settodoCount] = useState(0);
     const handleTodoCount = () => {
         let newcount = todoItems.filter((item) =>
@@ -17,9 +30,11 @@ export const TodoProvider = ({ children }) => {
             id: `${Math.floor(Math.random() * 100000000)}`,
             title: `${newTodoItems}`,
             show: true,
-            checked:false,
+            checked: false,
         },
         ]);
+        { toaster(`New Item added Successfully ✅`) }
+
     };
     const EditTodoItem = (todoItemToEdit) => {
         const updatedItems = todoItems.map((item) =>
@@ -27,16 +42,19 @@ export const TodoProvider = ({ children }) => {
         );
         settodoItems(updatedItems);
         localStorage.setItem('todoList', JSON.stringify(updatedItems));
+        { toaster(`Item Edited Successfully ✎ `) }
     };
 
 
     const removeTodoItem = (todoitemToremove) => {
         const existingItems = todoItems.find((item) => item.id === todoitemToremove.id);
-        if (existingItems){
+        if (existingItems) {
             const newTodoItems = todoItems.filter((item) => item.id !== todoitemToremove.id);
             settodoItems(newTodoItems);
-            localStorage.setItem('todoList',JSON.stringify(newTodoItems))
+            localStorage.setItem('todoList', JSON.stringify(newTodoItems))
         }
+        {
+            toaster(`Item Deleted Successfully 🗑️ ` ) }
     }
     const clearCompleted = () => {
         let newTodoItems = todoItems.filter((item) => !item.checked === true);
@@ -44,7 +62,7 @@ export const TodoProvider = ({ children }) => {
     }
     useEffect(() => {
         handleTodoCount();
-    }, [todoItems,todoCount]);
+    }, [todoItems, todoCount]);
 
     return (
         <TodoContext.Provider value={{
@@ -52,7 +70,7 @@ export const TodoProvider = ({ children }) => {
             removeTodoItem: removeTodoItem,
             clearCompleted: clearCompleted,
             handleTodoCount: handleTodoCount,
-            EditTodoItem:EditTodoItem,
+            EditTodoItem: EditTodoItem,
             todoCount: todoCount,
             todoItems: todoItems,
         }}>
