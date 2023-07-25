@@ -71,4 +71,8 @@
 }
 .edit-button{
   height: 2.5rem;
+  opacity:0.6;
+}
+.main-container.dark .edit-button {
+  opacity: 0.9;
 }
