@@ -7,11 +7,12 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+
 }
 
 .todo-items {
   display: flex;
-  width: 100%;
+  width: 80%;
 }
 
 .main-container.dark .todo-item-container {
@@ -61,4 +62,13 @@
 .main-container.dark .todo-item.checked {
   opacity: 0.2;
 }
-
+.cross-area{
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: center;
+  margin-left:10%;
+}
+.edit-button{
+  height: 2.5rem;
+}

@@ -4,6 +4,7 @@ const TodoContext = React.createContext();
 
 export const TodoProvider = ({ children }) => {
     const [todoItems, settodoItems] = useState(JSON.parse(localStorage.getItem('todoList')) ?? []);
+    const [Edit,SetEdit]=useState('false')
     const [todoCount, settodoCount] = useState(0);
     const handleTodoCount = () => {
         let newcount = todoItems.filter((item) =>
@@ -20,6 +21,14 @@ export const TodoProvider = ({ children }) => {
         },
         ]);
     };
+    const EditTodoItem = (todoItemToEdit) => {
+        const updatedItems = todoItems.map((item) =>
+            item.id === todoItemToEdit.id ? { ...item, title: todoItemToEdit.title } : item
+        );
+        settodoItems(updatedItems);
+        localStorage.setItem('todoList', JSON.stringify(updatedItems));
+    };
+
 
     const removeTodoItem = (todoitemToremove) => {
         const existingItems = todoItems.find((item) => item.id === todoitemToremove.id);
@@ -43,6 +52,7 @@ export const TodoProvider = ({ children }) => {
             removeTodoItem: removeTodoItem,
             clearCompleted: clearCompleted,
             handleTodoCount: handleTodoCount,
+            EditTodoItem:EditTodoItem,
             todoCount: todoCount,
             todoItems: todoItems,
         }}>
